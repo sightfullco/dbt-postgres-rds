@@ -59,9 +59,7 @@ class PostgresCredentials(Credentials):
             "sslkey",
             "sslrootcert",
             "application_name",
-            "retries",
-            "role_arn",
-            "aws_region"
+            "retries"
         )
 
 
