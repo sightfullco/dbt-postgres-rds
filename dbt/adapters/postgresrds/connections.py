@@ -37,7 +37,7 @@ class PostgresCredentials(Credentials):
 
     @property
     def type(self):
-        return "postgres-rds"
+        return "postgresrds"
 
     @property
     def unique_field(self):
@@ -66,7 +66,7 @@ class PostgresCredentials(Credentials):
 
 
 class PostgresConnectionManager(SQLConnectionManager):
-    TYPE = "postgres-rds"
+    TYPE = "postgresrds"
 
     @contextmanager
     def exception_handler(self, sql):
