@@ -73,7 +73,6 @@ flake8 = "python -m flake8 ."
 [tool.hatch.envs.typecheck]
 dependencies = [
     "mypy",
-    "types-protobuf",
     "types-pytz",
 ]
 [tool.hatch.envs.typecheck.scripts]
