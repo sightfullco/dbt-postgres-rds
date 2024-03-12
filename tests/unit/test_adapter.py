@@ -51,7 +51,7 @@ class TestPostgresAdapter(TestCase):
             inject_adapter(self._adapter, PostgresPlugin)
         return self._adapter
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_acquire_connection_validations(self, psycopg2):
         try:
             connection = self.adapter.acquire_connection("dummy")
@@ -65,7 +65,7 @@ class TestPostgresAdapter(TestCase):
         connection.handle
         psycopg2.connect.assert_called_once()
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_acquire_connection(self, psycopg2):
         connection = self.adapter.acquire_connection("dummy")
 
@@ -104,7 +104,7 @@ class TestPostgresAdapter(TestCase):
 
         master.handle.get_backend_pid.assert_not_called()
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_default_connect_timeout(self, psycopg2):
         connection = self.adapter.acquire_connection("dummy")
 
@@ -120,7 +120,7 @@ class TestPostgresAdapter(TestCase):
             application_name="dbt",
         )
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_changed_connect_timeout(self, psycopg2):
         self.config.credentials = self.config.credentials.replace(connect_timeout=30)
         connection = self.adapter.acquire_connection("dummy")
@@ -137,7 +137,7 @@ class TestPostgresAdapter(TestCase):
             application_name="dbt",
         )
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_default_keepalive(self, psycopg2):
         connection = self.adapter.acquire_connection("dummy")
 
@@ -153,7 +153,7 @@ class TestPostgresAdapter(TestCase):
             application_name="dbt",
         )
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_changed_keepalive(self, psycopg2):
         self.config.credentials = self.config.credentials.replace(keepalives_idle=256)
         connection = self.adapter.acquire_connection("dummy")
@@ -171,7 +171,7 @@ class TestPostgresAdapter(TestCase):
             application_name="dbt",
         )
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_default_application_name(self, psycopg2):
         connection = self.adapter.acquire_connection("dummy")
 
@@ -187,7 +187,7 @@ class TestPostgresAdapter(TestCase):
             application_name="dbt",
         )
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_changed_application_name(self, psycopg2):
         self.config.credentials = self.config.credentials.replace(application_name="myapp")
         connection = self.adapter.acquire_connection("dummy")
@@ -204,7 +204,7 @@ class TestPostgresAdapter(TestCase):
             application_name="myapp",
         )
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_role(self, psycopg2):
         self.config.credentials = self.config.credentials.replace(role="somerole")
         connection = self.adapter.acquire_connection("dummy")
@@ -213,7 +213,7 @@ class TestPostgresAdapter(TestCase):
 
         cursor.execute.assert_called_once_with("set role somerole")
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_search_path(self, psycopg2):
         self.config.credentials = self.config.credentials.replace(search_path="test")
         connection = self.adapter.acquire_connection("dummy")
@@ -231,7 +231,7 @@ class TestPostgresAdapter(TestCase):
             options="-c search_path=test",
         )
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_sslmode(self, psycopg2):
         self.config.credentials = self.config.credentials.replace(sslmode="require")
         connection = self.adapter.acquire_connection("dummy")
@@ -249,7 +249,7 @@ class TestPostgresAdapter(TestCase):
             application_name="dbt",
         )
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_ssl_parameters(self, psycopg2):
         self.config.credentials = self.config.credentials.replace(sslmode="verify-ca")
         self.config.credentials = self.config.credentials.replace(sslcert="service.crt")
@@ -273,7 +273,7 @@ class TestPostgresAdapter(TestCase):
             application_name="dbt",
         )
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_schema_with_space(self, psycopg2):
         self.config.credentials = self.config.credentials.replace(search_path="test test")
         connection = self.adapter.acquire_connection("dummy")
@@ -291,7 +291,7 @@ class TestPostgresAdapter(TestCase):
             options="-c search_path=test\ test",  # noqa: [W605]
         )
 
-    @mock.patch("dbt.adapters.postgres.connections.psycopg2")
+    @mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
     def test_set_zero_keepalive(self, psycopg2):
         self.config.credentials = self.config.credentials.replace(keepalives_idle=0)
         connection = self.adapter.acquire_connection("dummy")

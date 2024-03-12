@@ -2,7 +2,7 @@ from typing import Dict, List, Optional
 
 from dbt.adapters.base.relation import BaseRelation
 
-from dbt.adapters.postgres.relation import PostgresRelation
+from dbt.adapters.postgresrds.relation import PostgresRelation
 
 
 def query_relation_type(project, relation: BaseRelation) -> Optional[str]:

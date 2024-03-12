@@ -55,7 +55,7 @@ class TestPostgresConnection(TestCase):
         self.handle = mock.MagicMock(spec=psycopg2_extensions.connection)
         self.cursor = self.handle.cursor.return_value
         self.mock_execute = self.cursor.execute
-        self.patcher = mock.patch("dbt.adapters.postgres.connections.psycopg2")
+        self.patcher = mock.patch("dbt.adapters.postgresrds.connections.psycopg2")
         self.psycopg2 = self.patcher.start()
 
         # Create the Manifest.state_check patcher

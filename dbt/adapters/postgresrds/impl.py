@@ -21,9 +21,9 @@ from dbt_common.dataclass_schema import ValidationError, dbtClassMixin
 from dbt_common.exceptions import DbtRuntimeError
 from dbt_common.utils import encoding as dbt_encoding
 
-from dbt.adapters.postgres.column import PostgresColumn
-from dbt.adapters.postgres.connections import PostgresConnectionManager
-from dbt.adapters.postgres.relation import PostgresRelation
+from dbt.adapters.postgresrds.column import PostgresColumn
+from dbt.adapters.postgresrds.connections import PostgresConnectionManager
+from dbt.adapters.postgresrds.relation import PostgresRelation
 
 
 GET_RELATIONS_MACRO_NAME = "postgres__get_relations"
