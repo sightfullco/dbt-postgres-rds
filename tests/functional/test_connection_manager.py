@@ -3,7 +3,7 @@ from unittest import TestCase, mock
 from dbt.adapters.contracts.connection import Connection
 import psycopg2
 
-from dbt.adapters.postgres import PostgresCredentials, PostgresConnectionManager
+from dbt.adapters.postgresrds import PostgresCredentials, PostgresRDSConnectionManager
 
 
 class TestConnectionManagerOpen(TestCase):
@@ -52,7 +52,7 @@ class TestConnectionManagerOpen(TestCase):
             return True
 
         with mock.patch("psycopg2.connect", wraps=connect) as mock_connect:
-            PostgresConnectionManager.open(conn)
+            PostgresRDSConnectionManager.open(conn)
 
             assert mock_connect.call_count == 3
 

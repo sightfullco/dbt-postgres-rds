@@ -8,7 +8,7 @@ from dbt.adapters.contracts.relation import Path
 from dbt_common.context import set_invocation_context
 from dbt_common.exceptions import DbtValidationError
 
-from dbt.adapters.postgres import Plugin as PostgresPlugin, PostgresAdapter
+from dbt.adapters.postgresrds import Plugin as PostgresPlugin, PostgresAdapter
 from tests.unit.utils import (
     config_from_parts_or_dicts,
     inject_adapter,

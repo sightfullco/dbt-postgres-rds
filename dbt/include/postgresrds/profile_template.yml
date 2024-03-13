@@ -1,5 +1,5 @@
 fixed:
-  type: postgres
+  type: postgresrds
 prompts:
   host:
     hint: 'hostname for the instance'

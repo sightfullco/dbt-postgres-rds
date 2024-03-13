@@ -11,7 +11,7 @@ import dbt.tracking
 import pytest
 import yaml
 
-from dbt.adapters.postgres import PostgresCredentials
+from dbt.adapters.postgresrds import PostgresCredentials
 from tests.functional.utils import normalize
 
 

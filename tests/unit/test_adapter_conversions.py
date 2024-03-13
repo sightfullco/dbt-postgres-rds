@@ -4,7 +4,7 @@ from unittest import TestCase
 import agate
 from dbt_common.clients import agate_helper
 
-from dbt.adapters.postgres import PostgresAdapter
+from dbt.adapters.postgresrds import PostgresAdapter
 
 
 class AdapterConversions(TestCase):

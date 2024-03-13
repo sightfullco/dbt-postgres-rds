@@ -10,7 +10,7 @@ from dbt.task.debug import DebugTask
 from dbt_common.exceptions import DbtConfigError
 from psycopg2 import DatabaseError, extensions as psycopg2_extensions
 
-from dbt.adapters.postgres import Plugin as PostgresPlugin, PostgresAdapter
+from dbt.adapters.postgresrds import Plugin as PostgresPlugin, PostgresAdapter
 from tests.unit.utils import (
     clear_plugin,
     config_from_parts_or_dicts,

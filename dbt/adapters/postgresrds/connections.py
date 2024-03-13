@@ -12,7 +12,7 @@ import psycopg2
 from typing_extensions import Annotated
 
 
-logger = AdapterLogger("Postgres")
+logger = AdapterLogger("PostgresRDS")
 
 
 @dataclass
@@ -37,7 +37,7 @@ class PostgresCredentials(Credentials):
 
     @property
     def type(self):
-        return "postgres"
+        return "postgresrds"
 
     @property
     def unique_field(self):
@@ -63,8 +63,8 @@ class PostgresCredentials(Credentials):
         )
 
 
-class PostgresConnectionManager(SQLConnectionManager):
-    TYPE = "postgres"
+class PostgresRDSConnectionManager(SQLConnectionManager):
+    TYPE = "postgresrds"
 
     @contextmanager
     def exception_handler(self, sql):
@@ -72,7 +72,7 @@ class PostgresConnectionManager(SQLConnectionManager):
             yield
 
         except psycopg2.DatabaseError as e:
-            logger.debug("Postgres error: {}".format(str(e)))
+            logger.debug("PostgresRDS error: {}".format(str(e)))
 
             try:
                 self.rollback_if_open()
